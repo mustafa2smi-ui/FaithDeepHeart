@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faith Deep Heart - Spiritual Images & Quotes</title>
+    <meta name="description" content="Explore our collection of spiritual images, Quranic quotes, duas, motivational messages, and positive wishes for your daily inspiration.">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Faith Deep Heart - Spiritual Images & Quotes">
+    <meta property="og:description" content="Explore our collection of spiritual images, Quranic quotes, duas, motivational messages, and positive wishes.">
+    <meta property="og:image" content="https://raw.githubusercontent.com/faithdeepheart/images/main/logo.png">
+    <meta property="og:url" content="https://faithdeepheart.com">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Faith Deep Heart - Spiritual Images & Quotes">
+    <meta name="twitter:description" content="Explore our collection of spiritual images, Quranic quotes, duas, motivational messages, and positive wishes.">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/faithdeepheart/images/main/logo.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/faithdeepheart/images/main/favicon.ico">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <style>
+        /* CSS Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-color: #2c5aa0;
+            --secondary-color: #4a7bc8;
+            --accent-color: #f1c40f;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --text-color: #333;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-color);
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1rem;
+            box-shadow: var(--box-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo img {
+            height: 40px;
+            width: auto;
+        }
+        
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        nav a:hover {
+            color: var(--accent-color);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Main Content Styles */
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        /* Category Filter Styles */
+        .category-filter {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            justify-content: center;
+        }
+        
+        .category-btn {
+            padding: 0.5rem 1rem;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+        
+        .category-btn:hover, .category-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        /* Category Description Styles */
+        .category-description {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .category-description h2 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Gallery Styles */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .image-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+        
+        .image-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .image-container {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .image-card:hover .image-container img {
+            transform: scale(1.05);
+        }
+        
+        .image-info {
+            padding: 1rem;
+        }
+        
+        .image-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--dark-color);
+        }
+        
+        .image-description {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        
+        .image-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .download-btn {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .download-btn:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .share-btn {
+            background-color: #f8f9fa;
+            color: var(--dark-color);
+            border: 1px solid #ddd;
+        }
+        
+        .share-btn:hover {
+            background-color: #e9ecef;
+        }
+        
+        /* Share Modal Styles */
+        .share-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .share-modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            width: 90%;
+            max-width: 500px;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .share-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+        
+        .share-options {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .share-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .share-option:hover {
+            transform: scale(1.1);
+        }
+        
+        .share-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        .whatsapp {
+            background-color: #25D366;
+        }
+        
+        .facebook {
+            background-color: #3b5998;
+        }
+        
+        .twitter {
+            background-color: #1DA1F2;
+        }
+        
+        .link {
+            background-color: var(--primary-color);
+        }
+        
+        .share-url {
+            display: flex;
+            margin-top: 1rem;
+        }
+        
+        .share-url input {
+            flex: 1;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius) 0 0 var(--border-radius);
+        }
+        
+        .copy-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0 1rem;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            cursor: pointer;
+        }
+        
+        /* Load More Button */
+        .load-more-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        
+        .load-more-btn {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .load-more-btn:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        /* Footer Styles */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 2rem 1rem;
+            margin-top: 3rem;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-section a {
+            color: #ddd;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-section a:hover {
+            color: var(--accent-color);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #444;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .share-options {
+                flex-wrap: wrap;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            .category-filter {
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="https://raw.githubusercontent.com/faithdeepheart/images/main/logo.png" alt="Faith Deep Heart Logo">
+                <h1>Faith Deep Heart</h1>
+            </div>
+            <button class="mobile-menu-btn">☰</button>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#categories">Categories</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Category Filter -->
+        <div class="category-filter" id="categoryFilter">
+            <!-- Categories will be dynamically generated -->
+        </div>
+
+        <!-- Category Description -->
+        <div class="category-description" id="categoryDescription">
+            <h2>Welcome to Faith Deep Heart</h2>
+            <p>Explore our collection of spiritual images, Quranic quotes, duas, motivational messages, and positive wishes for your daily inspiration.</p>
+        </div>
+
+        <!-- Image Gallery -->
+        <div class="gallery" id="imageGallery">
+            <!-- Images will be dynamically loaded here -->
+        </div>
+
+        <!-- Load More Button -->
+        <div class="load-more-container">
+            <button class="load-more-btn" id="loadMoreBtn">Show More</button>
+        </div>
+    </main>
+
+    <!-- Share Modal -->
+    <div class="share-modal" id="shareModal">
+        <div class="share-modal-content">
+            <div class="share-modal-header">
+                <h3>Share This Image</h3>
+                <button class="close-modal" id="closeModal">&times;</button>
+            </div>
+            <div class="share-options">
+                <div class="share-option" id="shareWhatsApp">
+                    <div class="share-icon whatsapp">📱</div>
+                    <span>WhatsApp</span>
+                </div>
+                <div class="share-option" id="shareFacebook">
+                    <div class="share-icon facebook">f</div>
+                    <span>Facebook</span>
+                </div>
+                <div class="share-option" id="shareTwitter">
+                    <div class="share-icon twitter">🐦</div>
+                    <span>Twitter</span>
+                </div>
+                <div class="share-option" id="shareLink">
+                    <div class="share-icon link">🔗</div>
+                    <span>Copy Link</span>
+                </div>
+            </div>
+            <div class="share-url">
+                <input type="text" id="shareUrl" readonly>
+                <button class="copy-btn" id="copyUrl">Copy</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Faith Deep Heart</h3>
+                <p>Your source for spiritual inspiration, Quranic quotes, duas, and positive messages.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#categories">Categories</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Categories</h3>
+                <ul id="footerCategories">
+                    <!-- Categories will be dynamically generated -->
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="#privacy">Privacy Policy</a></li>
+                    <li><a href="#terms">Terms of Service</a></li>
+                    <li><a href="#disclaimer">Disclaimer</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 Faith Deep Heart. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Sample data structure (in a real implementation, this would be fetched from GitHub)
+        const imageData = [
+            {
+                id: 1,
+                title: "Morning Dua for Protection",
+                description: "A beautiful dua to start your day with Allah's protection and blessings.",
+                category: "Dua",
+                url: "https://raw.githubusercontent.com/faithdeepheart/images/main/morning-dua.jpg",
+                filename: "morning-dua.jpg"
+            },
+            {
+                id: 2,
+                title: "Quranic Verse About Patience",
+                description: "Inspirational Quranic verse reminding us of the importance of patience in life.",
+                category: "Quranic Quotes",
+                url: "https://raw.githubusercontent.com/faithdeepheart/images/main/patience-verse.jpg",
+                filename: "patience-verse.jpg"
+            },
+            {
+                id: 3,
+                title: "Motivational Success Quote",
+                description: "Powerful motivational message to inspire you towards success and achievement.",
+                category: "Motivation",
+                url: "https://raw.githubusercontent.com/faithdeepheart/images/main/success-quote.jpg",
+                filename: "success-quote.jpg"
+            },
+            {
+                id: 4,
+                title: "Eid Mubarak Wishes",
+                description: "Beautiful Eid greeting with warm wishes for you and your family.",
+                category: "Festival Wishes",
+                url: "https://raw.githubusercontent.com/faithdeepheart/images/main/eid-wishes.jpg",
+                filename: "eid-wishes.jpg"
+            },
+            {
+                id: 5,
+                title: "Evening Dua for Peace",
+                description: "Serene evening dua to find peace and tranquility after a long day.",
+                category: "Dua",
+                url: "https://raw.githubusercontent.com/faithdeepheart/images/main/evening-dua.jpg",
+                filename: "evening-dua.jpg"
+            },
+            {
+                id: 6,
+                title: "Good Morning Blessings",
+                description: "Start your day with positive energy and blessings from Allah.",
+                category: "Good Morning",
+                url: "https://raw.githubusercontent.com/faithdeepheart/images/main/good-morning.jpg",
+                filename: "good-morning.jpg"
+            },
+            {
+                id: 7,
+                title: "Quranic Dua for Guidance",
+                description: "Powerful Quranic supplication seeking guidance and direction in life.",
+                category: "Quranic Dua",
+                url: "https://raw.githubusercontent.com/faithdeepheart/images/main/guidance-dua.jpg",
+                filename: "guidance-dua.jpg"
+            },
+            {
+                id: 8,
+                title: "Positive Affirmations",
+                description: "Daily positive affirmations to strengthen your faith and mindset.",
+                category: "Motivation",
+                url: "https://raw.githubusercontent.com/faithdeepheart/images/main/positive-affirmations.jpg",
+                filename: "positive-affirmations.jpg"
+            },
+            {
+                id: 9,
+                title: "Ramadan Kareem",
+                description: "Beautiful Ramadan greeting with blessings for the holy month.",
+                category: "Festival Wishes",
+                url: "https://raw.githubusercontent.com/faithdeepheart/images/main/ramadan-kareem.jpg",
+                filename: "ramadan-kareem.jpg"
+            },
+            {
+                id: 10,
+                title: "Night Prayer Dua",
+                description: "Special dua for night prayers and seeking forgiveness.",
+                category: "Dua",
+                url: "https://raw.githubusercontent.com/faithdeepheart/images/main/night-prayer.jpg",
+                filename: "night-prayer.jpg"
+            }
+        ];
+
+        // Category descriptions for SEO content
+        const categoryDescriptions = {
+            "All": {
+                title: "Welcome to Faith Deep Heart",
+                description: "Explore our collection of spiritual images, Quranic quotes, duas, motivational messages, and positive wishes for your daily inspiration."
+            },
+            "Dua": {
+                title: "Dua Collection",
+                description: "Discover powerful Islamic duas for various occasions - morning, evening, protection, guidance, and more. Strengthen your connection with Allah through these beautiful supplications."
+            },
+            "Quranic Quotes": {
+                title: "Quranic Quotes",
+                description: "Find inspiration in these carefully selected verses from the Holy Quran. These quotes offer guidance, comfort, and wisdom for everyday life."
+            },
+            "Motivation": {
+                title: "Motivational Messages",
+                description: "Boost your spirits with our collection of motivational quotes and positive affirmations. Perfect for daily inspiration and maintaining a positive mindset."
+            },
+            "Festival Wishes": {
+                title: "Festival Wishes",
+                description: "Share beautiful greetings for Islamic festivals like Eid, Ramadan, and other special occasions. Spread joy and blessings with these heartfelt wishes."
+            },
+            "Good Morning": {
+                title: "Good Morning Blessings",
+                description: "Start your day right with our collection of good morning messages infused with Islamic blessings and positive energy."
+            },
+            "Quranic Dua": {
+                title: "Quranic Dua Collection",
+                description: "Powerful supplications from the Quran for guidance, protection, forgiveness, and blessings in various aspects of life."
+            },
+            "Best Quotes": {
+                title: "Best Quotes Collection",
+                description: "Our most popular and impactful quotes covering various aspects of faith, motivation, and daily inspiration."
+            }
+        };
+
+        // DOM Elements
+        const categoryFilter = document.getElementById('categoryFilter');
+        const categoryDescription = document.getElementById('categoryDescription');
+        const imageGallery = document.getElementById('imageGallery');
+        const loadMoreBtn = document.getElementById('loadMoreBtn');
+        const shareModal = document.getElementById('shareModal');
+        const closeModal = document.getElementById('closeModal');
+        const shareUrl = document.getElementById('shareUrl');
+        const copyUrl = document.getElementById('copyUrl');
+        const footerCategories = document.getElementById('footerCategories');
+
+        // State variables
+        let currentCategory = 'All';
+        let displayedCount = 5;
+        const itemsPerLoad = 5;
+        let currentImageForSharing = null;
+
+        // Initialize the application
+        function init() {
+            generateCategories();
+            displayImages();
+            setupEventListeners();
+        }
+
+        // Generate category buttons
+        function generateCategories() {
+            const categories = ['All', 'Best Quotes', 'Dua', 'Quranic Dua', 'Quranic Quotes', 'Motivation', 'Festival Wishes', 'Good Morning', 'Good Night'];
+            
+            // Clear existing buttons
+            categoryFilter.innerHTML = '';
+            footerCategories.innerHTML = '';
+            
+            // Create category filter buttons
+            categories.forEach(category => {
+                const button = document.createElement('button');
+                button.className = 'category-btn';
+                button.textContent = category;
+                button.dataset.category = category;
+                if (category === 'All') button.classList.add('active');
+                
+                button.addEventListener('click', () => {
+                    // Update active button
+                    document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    
+                    // Update category and reset display count
+                    currentCategory = category;
+                    displayedCount = itemsPerLoad;
+                    
+                    // Update category description
+                    updateCategoryDescription();
+                    
+                    // Display filtered images
+                    displayImages();
+                });
+                
+                categoryFilter.appendChild(button);
+            });
+            
+            // Create footer category links
+            categories.forEach(category => {
+                if (category !== 'All') {
+                    const li = document.createElement('li');
+                    const a = document.createElement('a');
+                    a.href = `#${category.toLowerCase().replace(' ', '-')}`;
+                    a.textContent = category;
+                    a.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        // Simulate category button click
+                        document.querySelector(`.category-btn[data-category="${category}"]`).click();
+                    });
+                    li.appendChild(a);
+                    footerCategories.appendChild(li);
+                }
+            });
+        }
+
+        // Update category description based on current category
+        function updateCategoryDescription() {
+            const desc = categoryDescriptions[currentCategory] || categoryDescriptions['All'];
+            categoryDescription.innerHTML = `
+                <h2>${desc.title}</h2>
+                <p>${desc.description}</p>
+            `;
+        }
+
+        // Display images based on current category and display count
+        function displayImages() {
+            // Filter images by category
+            let filteredImages = imageData;
+            if (currentCategory !== 'All') {
+                filteredImages = imageData.filter(image => image.category === currentCategory);
+            }
+            
+            // Clear gallery
+            imageGallery.innerHTML = '';
+            
+            // Display images up to current count
+            const imagesToShow = filteredImages.slice(0, displayedCount);
+            
+            if (imagesToShow.length === 0) {
+                imageGallery.innerHTML = '<p style="grid-column: 1 / -1; text-align: center; padding: 2rem;">No images found in this category.</p>';
+                loadMoreBtn.style.display = 'none';
+                return;
+            }
+            
+            imagesToShow.forEach(image => {
+                const imageCard = createImageCard(image);
+                imageGallery.appendChild(imageCard);
+            });
+            
+            // Show/hide load more button
+            loadMoreBtn.style.display = displayedCount < filteredImages.length ? 'block' : 'none';
+            
+            // Initialize lazy loading for images
+            initLazyLoading();
+        }
+
+        // Create an image card element
+        function createImageCard(image) {
+            const card = document.createElement('div');
+            card.className = 'image-card';
+            card.innerHTML = `
+                <div class="image-container">
+                    <img src="placeholder.jpg" data-src="${image.url}" alt="${image.title}" class="lazy">
+                </div>
+                <div class="image-info">
+                    <h3 class="image-title">${image.title}</h3>
+                    <p class="image-description">${image.description}</p>
+                    <div class="image-actions">
+                        <button class="btn download-btn" data-image="${image.url}">
+                            <span>📥</span> Download
+                        </button>
+                        <button class="btn share-btn" data-image-id="${image.id}">
+                            <span>🔗</span> Share
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            // Add event listeners for buttons
+            const downloadBtn = card.querySelector('.download-btn');
+            const shareBtn = card.querySelector('.share-btn');
+            
+            downloadBtn.addEventListener('click', () => downloadImage(image.url, image.title));
+            shareBtn.addEventListener('click', () => openShareModal(image));
+            
+            return card;
+        }
+
+        // Initialize lazy loading for images
+        function initLazyLoading() {
+            const lazyImages = document.querySelectorAll('img.lazy');
+            
+            const lazyImageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const lazyImage = entry.target;
+                        lazyImage.src = lazyImage.dataset.src;
+                        lazyImage.classList.remove('lazy');
+                        lazyImageObserver.unobserve(lazyImage);
+                    }
+                });
+            });
+            
+            lazyImages.forEach(lazyImage => {
+                lazyImageObserver.observe(lazyImage);
+            });
+        }
+
+        // Download image function
+        function downloadImage(imageUrl, imageTitle) {
+            // In a real implementation, this would fetch the image and trigger download
+            // For this demo, we'll simulate the download
+            const a = document.createElement('a');
+            a.href = imageUrl;
+            a.download = `${imageTitle.replace(/\s+/g, '-').toLowerCase()}.jpg`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            
+            // Show success message (in a real app)
+            alert(`Downloading: ${imageTitle}`);
+        }
+
+        // Open share modal
+        function openShareModal(image) {
+            currentImageForSharing = image;
+            const pageUrl = window.location.href.split('#')[0];
+            const shareUrlValue = `${pageUrl}?image=${image.id}`;
+            shareUrl.value = shareUrlValue;
+            shareModal.style.display = 'flex';
+        }
+
+        // Close share modal
+        function closeShareModal() {
+            shareModal.style.display = 'none';
+            currentImageForSharing = null;
+        }
+
+        // Copy URL to clipboard
+        function copyToClipboard() {
+            shareUrl.select();
+            shareUrl.setSelectionRange(0, 99999); // For mobile devices
+            document.execCommand('copy');
+            
+            // Change button text temporarily
+            const originalText = copyUrl.textContent;
+            copyUrl.textContent = 'Copied!';
+            setTimeout(() => {
+                copyUrl.textContent = originalText;
+            }, 2000);
+        }
+
+        // Share to social media
+        function shareToSocial(platform) {
+            const pageUrl = window.location.href.split('#')[0];
+            const shareUrlValue = `${pageUrl}?image=${currentImageForSharing.id}`;
+            const text = `${currentImageForSharing.title} - ${currentImageForSharing.description}`;
+            
+            let shareUrl;
+            
+            switch(platform) {
+                case 'whatsapp':
+                    shareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(text + ' ' + shareUrlValue)}`;
+                    break;
+                case 'facebook':
+                    shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrlValue)}&quote=${encodeURIComponent(text)}`;
+                    break;
+                case 'twitter':
+                    shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(shareUrlValue)}`;
+                    break;
+                default:
+                    return;
+            }
+            
+            window.open(shareUrl, '_blank', 'width=600,height=400');
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Load more button
+            loadMoreBtn.addEventListener('click', () => {
+                displayedCount += itemsPerLoad;
+                displayImages();
+            });
+            
+            // Share modal
+            closeModal.addEventListener('click', closeShareModal);
+            copyUrl.addEventListener('click', copyToClipboard);
+            
+            // Share options
+            document.getElementById('shareWhatsApp').addEventListener('click', () => shareToSocial('whatsapp'));
+            document.getElementById('shareFacebook').addEventListener('click', () => shareToSocial('facebook'));
+            document.getElementById('shareTwitter').addEventListener('click', () => shareToSocial('twitter'));
+            document.getElementById('shareLink').addEventListener('click', copyToClipboard);
+            
+            // Close modal when clicking outside
+            shareModal.addEventListener('click', (e) => {
+                if (e.target === shareModal) {
+                    closeShareModal();
+                }
+            });
+            
+            // Mobile menu toggle
+            document.querySelector('.mobile-menu-btn').addEventListener('click', () => {
+                const nav = document.querySelector('nav');
+                nav.style.display = nav.style.display === 'block' ? 'none' : 'block';
+            });
+        }
+
+        // Initialize the app when DOM is loaded
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
