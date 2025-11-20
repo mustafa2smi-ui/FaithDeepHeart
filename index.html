@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faith Deep Heart - Best Quotes & Dua Collection</title>
+
+    <meta name="description" content="Faith Deep Heart – Best Islamic Quotes, Quranic Dua, Evening Dua, Motivational Thoughts with Download & Share option.">
+    <meta property="og:title" content="Faith Deep Heart - Best Quotes & Dua Collection">
+    <meta property="og:description" content="Download & Share Beautiful Quotes & Dua Images.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://yourwebsiteurl.com/main_share_image.jpg">
+    <meta property="og:url" content="https://yourwebsiteurl.com">
+
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; background: #f8f8f8; }
+
+        /* HEADER WITH ANIMATION */
+        .header {
+            background: linear-gradient(270deg, #ff7eb3, #ff758c, #ff9770, #ffd76b);
+            background-size: 800% 800%;
+            animation: gradientBG 10s ease infinite;
+            padding: 40px 20px;
+            text-align: center;
+            color: white;
+        }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .header h1 { margin: 0; font-size: 36px; }
+        .quote-text { font-size: 18px; margin-top: 10px; font-style: italic; }
+
+        /* CATEGORY BUTTONS */
+        .categories { text-align: center; padding: 15px; }
+        .cat-btn {
+            padding: 10px 14px;
+            margin: 6px;
+            border: none;
+            background: #222;
+            color: white;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: background 0.3s ease; /* 🚀 सुधार 1: Smooth transition */
+        }
+        .cat-btn:hover { background: #444; }
+        .cat-btn.active { background: #007bff; } /* एक्टिव बटन को हाईलाइट करने के लिए */
+
+        /* IMAGE GRID */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px; /* 🚀 सुधार 2: Responsive gap के लिए '20px' ठीक है */
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .card h3 { font-size: 18px; margin: 10px 0 5px 0; color: #333; }
+        .card p { font-size: 13px; color: #666; margin-bottom: 10px; } /* Description Style */
+
+        .card img { 
+            width: 100%; 
+            border-radius: 8px; 
+            max-height: 400px; 
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            display: inline-block;
+            margin: 6px;
+            padding: 8px 14px;
+            background: #007bff;
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+            cursor: pointer;
+            font-size: 14px;
+            border: none;
+            transition: background 0.3s ease;
+        }
+        .btn:hover { background: #0056b3; }
+
+        /* FOOTER */
+        footer {
+            background: #111; color: white; text-align: center;
+            padding: 20px; margin-top: 40px;
+        }
+        footer a { color: #ffcc00; text-decoration: none; }
+    </style>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>Faith Deep Heart</h1>
+    <div class="quote-text">"Always pray to Allah with a deep heart full of faith."</div>
+</div>
+
+<div class="categories" id="category-buttons">
+    </div>
+
+<div class="gallery" id="gallery"></div>
+
+<script>
+// ⭐ डेटा स्ट्रक्चर (Data Structure) सुधार: URL, Title, Description और Category अब एक साथ हैं।
+const images = [
+  // 📌 1. GitHub Raw URL का उपयोग करें और सभी फ़ील्ड भरें
+  {
+    url: "https://raw.githubusercontent.com/mustafa2smi-ui/FaithDeepHeart/main/Dua.jpg",
+    title: "Powerful Morning Dua",
+    description: "Start your day with this beautiful dua seeking Allah's protection and guidance.",
+    category: "dua"
+  },
+  // 📌 2. अपने वास्तविक URL और कंटेंट से बदलें
+  {
+    url: "https://raw.githubusercontent.com/YOUR-USERNAME/REPOSITRY-NAME/main/best-quote-01.jpg",
+    title: "Patience is a Beautiful Virtue",
+    description: "A motivating quote on the importance of Sabr (Patience) in life's challenges.",
+    category: "quote"
+  },
+  {
+    url: "https://raw.githubusercontent.com/YOUR-USERNAME/REPOSITRY-NAME/main/quranic-dua-02.jpg",
+    title: "Dua for Knowledge (Rabbī Zidnī)",
+    description: "A short and profound Quranic dua for increasing knowledge and understanding.",
+    category: "quran"
+  },
+   {
+    url: "https://raw.githubusercontent.com/YOUR-USERNAME/REPOSITRY-NAME/main/evening-dua-03.jpg",
+    title: "Dua Before Sleeping",
+    description: "The Sunnah recommended dua to recite before you go to sleep.",
+    category: "evening"
+  }
+];
+
+// फ़िल्टर बटन को गतिशील रूप से बनाएँ
+function renderCategoryButtons() {
+    const categoriesDiv = document.getElementById('category-buttons');
+    const uniqueCategories = [...new Set(images.map(item => item.category))]; // डुप्लीकेट कैटेगरी हटाता है
+    
+    let buttonsHTML = `<button class="cat-btn active" onclick="filterImages('all', this)">Show All</button>`;
+    
+    uniqueCategories.forEach(cat => {
+        // category string का पहला अक्षर कैपिटल करें (e.g., "dua" -> "Dua")
+        const displayCat = cat.charAt(0).toUpperCase() + cat.slice(1);
+        buttonsHTML += `<button class="cat-btn" onclick="filterImages('${cat}', this)">${displayCat}</button>`;
+    });
+
+    categoriesDiv.innerHTML = buttonsHTML;
+}
+renderCategoryButtons();
+
+
+// 🧠 AUTO CARD CREATE
+function loadImages(filterCat = "all") {
+    const gallery = document.getElementById("gallery");
+    gallery.innerHTML = ""; // clear old
+
+    images.forEach(img => {
+        // 🚀 सुधार 3: फ़िल्टरिंग अब सीधे img.category पर आधारित है
+        if (filterCat !== "all" && img.category !== filterCat) return;
+
+        gallery.innerHTML += `
+        <div class="card">
+            <img src="${img.url}" alt="${img.title}" loading="lazy"> <h3>${img.title}</h3>
+            <p>${img.description}</p>
+            <a class="btn" download href="${img.url}">Download</a>
+            <button class="btn" onclick="shareImage('${img.url}', '${img.title}')">Share</button>
+        </div>`;
+    });
+}
+loadImages(); // first time load
+
+// 📲 SHARE FUNCTION (सुधार: शेयर टेक्स्ट में Title भी शामिल)
+function shareImage(url, title) {
+    const shareText = `${title} – Beautiful Islamic Quotes & Dua. Download & Share from Faith Deep Heart: ${url}`;
+    
+    if (navigator.share) {
+        navigator.share({
+            title: "Faith Deep Heart - Dua & Quotes",
+            text: shareText,
+            url: url
+        }).catch(error => console.log('Error sharing', error));
+    } else {
+        // बैकअप के रूप में WhatsApp शेयरिंग
+        window.open("https://wa.me/?text=" + encodeURIComponent(shareText), '_blank');
+    }
+}
+
+// फ़िल्टर और एक्टिव बटन अपडेट
+function filterImages(category, element) {
+    loadImages(category);
+
+    // 🚀 सुधार 5: एक्टिव बटन को हाईलाइट करना
+    document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('active'));
+    element.classList.add('active');
+}
+</script>
+
+<footer>
+    <p><b>Important Links:</b></p>
+    <a href="#">About Us</a> | 
+    <a href="#">Contact</a> | 
+    <a href="#">Privacy Policy</a> | 
+    <a href="#">Terms & Conditions</a>
+    <br><br>© 2025 Faith Deep Heart. All Rights Reserved.
+</footer>
+
+</body>
+</html>
