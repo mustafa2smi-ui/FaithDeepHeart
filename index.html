@@ -1,54 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<title>Faith Deep Heart</title>
-<style>
-  body { font-family: Arial; padding: 20px; }
-  .gallery { display: flex; flex-wrap: wrap; gap: 20px; }
-  .card { width: 250px; background: white; padding: 10px; border-radius: 10px; box-shadow: 0 0 10px #ccc; }
-  img { width: 100%; border-radius: 10px; }
-  .btn { margin-top: 8px; display: inline-block; padding: 6px 10px; background: #007bff; color: white; text-decoration: none; border-radius: 5px; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faith Deep Heart - Best Quotes & Dua Collection</title>
+
+    <!-- 🔹 META DESCRIPTION (SEO + SHARE के लिए) -->
+    <meta name="description" content="Faith Deep Heart – Best Islamic Quotes, Quranic Dua, Evening Dua, Motivational Thoughts with Download & Share option.">
+    <meta property="og:title" content="Faith Deep Heart - Best Quotes & Dua Collection">
+    <meta property="og:description" content="Download & Share Beautiful Quotes & Dua Images.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="YOUR_MAIN_IMAGE_URL.jpg">
+    <meta property="og:url" content="https://yourwebsiteurl.com">
+
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; background: #f8f8f8; }
+
+        /* HEADER WITH ANIMATION */
+        .header {
+            background: linear-gradient(270deg, #ff7eb3, #ff758c, #ff9770, #ffd76b);
+            background-size: 800% 800%;
+            animation: gradientBG 10s ease infinite;
+            padding: 40px 20px;
+            text-align: center;
+            color: white;
+        }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .header h1 { margin: 0; font-size: 36px; }
+        .quote-text { font-size: 18px; margin-top: 10px; font-style: italic; }
+
+        /* CATEGORY BUTTONS */
+        .categories { text-align: center; padding: 15px; }
+        .cat-btn {
+            padding: 10px 14px;
+            margin: 6px;
+            border: none;
+            background: #222;
+            color: white;
+            cursor: pointer;
+            border-radius: 6px;
+        }
+        .cat-btn:hover { background: #444; }
+
+        /* IMAGE GRID */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .card img { width: 100%; border-radius: 10px; }
+
+        .btn {
+            display: inline-block;
+            margin: 8px;
+            padding: 8px 12px;
+            background: #007bff;
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #111; color: white; text-align: center;
+            padding: 20px; margin-top: 40px;
+        }
+        footer a { color: #ffcc00; text-decoration: none; }
+    </style>
 </head>
+
 <body>
 
-<h2>Faith Deep Heart – Quotes & Dua</h2>
+<!-- 🚀 HEADER -->
+<div class="header">
+    <h1>Faith Deep Heart</h1>
+    <div class="quote-text">"Always pray to Allah with a deep heart full of faith."</div>
+</div>
 
+<!-- 📂 CATEGORY BUTTONS -->
+<div class="categories">
+    <button class="cat-btn" onclick="filterImages('quote')">Best Quote</button>
+    <button class="cat-btn" onclick="filterImages('dua')">Dua</button>
+    <button class="cat-btn" onclick="filterImages('quran')">Quranic Dua</button>
+    <button class="cat-btn" onclick="filterImages('evening')">Evening Dua</button>
+    <button class="cat-btn" onclick="filterImages('all')">Show All</button>
+</div>
+
+<!-- 🖼 IMAGE GALLERY (AUTO) -->
 <div class="gallery" id="gallery"></div>
 
 <script>
-// 📌 बस यहां images डालो (GitHub या Blogger URL)
+// ⭐ सिर्फ यहां link डालना है – बाकी सब auto होगा:
 const images = [
-  {url: "https://yourgithub.com/images/evening-dua-01.jpg", title: "Evening Dua"},
-  {url: "https://yourgithub.com/images/best-quote-01.jpg", title: "Best Quote"},
-  {url: "https://yourgithub.com/images/quranic-dua-02.jpg", title: "Quranic Dua"}
+  {url: "https://raw.githubusercontent.com/YOUR-USERNAME/faith-deep-heart-images/main/evening-dua-01.jpg"},
+  {url: "https://raw.githubusercontent.com/YOUR-USERNAME/faith-deep-heart-images/main/best-quote-01.jpg"},
+  {url: "https://raw.githubusercontent.com/YOUR-USERNAME/faith-deep-heart-images/main/quranic-dua-02.jpg"}
 ];
 
-// 📌 CATEGORY Auto Detect
-function detectCategory(filename) {
-  if (filename.includes("quran")) return "Quranic Dua";
-  if (filename.includes("evening")) return "Evening Dua";
-  if (filename.includes("dua")) return "Dua";
-  if (filename.includes("quote")) return "Best Quote";
-  return "Uncategorized";
+// 📌 CATEGORY AUTO DETECT
+function detectCategory(url) {
+    if (url.includes("quran")) return "Quranic Dua";
+    if (url.includes("evening")) return "Evening Dua";
+    if (url.includes("dua")) return "Dua";
+    if (url.includes("quote")) return "Best Quote";
+    return "Uncategorized";
 }
 
-// 🧠 AUTO CARD CREATE – कोई copy paste नहीं करना पड़ेगा!
-const container = document.getElementById("gallery");
-images.forEach(img => {
-  const category = detectCategory(img.url);
-  container.innerHTML += `
-    <div class="card">
-      <img src="${img.url}" alt="${img.title}">
-      <h3>${img.title}</h3>
-      <p>${category}</p>
-      <a class="btn" download href="${img.url}">Download</a>
-      <a class="btn" href="whatsapp://send?text=${encodeURIComponent(img.url)}">Share</a>
-    </div>
-  `;
-});
+// 🧠 AUTO CARD CREATE
+function loadImages(category = "all") {
+    const gallery = document.getElementById("gallery");
+    gallery.innerHTML = ""; // clear old
+
+    images.forEach(img => {
+        const cat = detectCategory(img.url);
+        if (category !== "all" && !img.url.includes(category)) return;
+
+        gallery.innerHTML += `
+        <div class="card">
+            <img src="${img.url}" alt="${cat}">
+            <h3>${cat}</h3>
+            <a class="btn" download href="${img.url}">Download</a>
+            <button class="btn" onclick="shareImage('${img.url}')">Share</button>
+        </div>`;
+    });
+}
+loadImages(); // first time load
+
+// 📲 SHARE FUNCTION
+function shareImage(url) {
+    if (navigator.share) {
+        navigator.share({
+            title: "Faith Deep Heart",
+            text: "Beautiful Dua & Quotes",
+            url: url
+        });
+    } else {
+        window.open("https://wa.me/?text=" + encodeURIComponent(url));
+    }
+}
+
+function filterImages(category) {
+    loadImages(category);
+}
 </script>
+
+<!-- 📌 FOOTER -->
+<footer>
+    <p><b>Important Links:</b></p>
+    <a href="#">About Us</a> | 
+    <a href="#">Contact</a> | 
+    <a href="#">Privacy Policy</a> | 
+    <a href="#">Terms & Conditions</a>
+    <br><br>© 2025 Faith Deep Heart. All Rights Reserved.
+</footer>
 
 </body>
 </html>
