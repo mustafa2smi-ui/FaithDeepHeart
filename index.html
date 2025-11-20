@@ -300,6 +300,7 @@ loadImages();           // पहली बार इमेज लोड कर�
     
 </script>
 -->
+    <!--
     <script>
 // ⭐ डेटा स्ट्रक्चर (आपका इमेज डेटा)
 const images = [
@@ -451,6 +452,157 @@ function filterImages(category, element) {
 renderCategoryButtons(); 
 loadImages();           
 </script>
+-->
+ <script>
+// ⭐ डेटा स्ट्रक्चर (आपका इमेज डेटा)
+const images = [
+  // **NOTE: कृपया 'YOUR-USERNAME/REPOSITRY-NAME' को अपने वास्तविक URL से बदलें**
+  {
+    url: "https://raw.githubusercontent.com/mustafa2smi-ui/FaithDeepHeart/main/Dua.jpg",
+    title: "Powerful Morning Dua",
+    description: "Start your day with this beautiful dua seeking Allah's protection and guidance.",
+    category: "dua"
+  },
+  {
+    url: "https://raw.githubusercontent.com/YOUR-USERNAME/REPOSITRY-NAME/main/best-quote-01.jpg",
+    title: "Patience is a Beautiful Virtue",
+    description: "A motivating quote on the importance of Sabr (Patience) in life's challenges.",
+    category: "quote"
+  },
+  {
+    url: "https://raw.githubusercontent.com/YOUR-USERNAME/REPOSITRY-NAME/main/quranic-dua-02.jpg",
+    title: "Dua for Knowledge (Rabbī Zidnī)",
+    description: "A short and profound Quranic dua for increasing knowledge and understanding.",
+    category: "quran"
+  },
+   {
+    url: "https://raw.githubusercontent.com/YOUR-USERNAME/REPOSITRY-NAME/main/evening-dua-03.jpg",
+    title: "Dua Before Sleeping",
+    description: "The Sunnah recommended dua to recite before you go to sleep.",
+    category: "evening"
+  },
+  // डमी डेटा
+  { url: "https://raw.githubusercontent.com/mustafa2smi-ui/FaithDeepHeart/main/Dua.jpg", title: "Test 1", description: "Test Desc", category: "dua" },
+  { url: "https://raw.githubusercontent.com/mustafa2smi-ui/FaithDeepHeart/main/Dua.jpg", title: "Test 2", description: "Test Desc", category: "quote" },
+  { url: "https://raw.githubusercontent.com/mustafa2smi-ui/FaithDeepHeart/main/Dua.jpg", title: "Test 3", description: "Test Desc", category: "dua" }
+];
 
+
+// --- शो मोर सेटिंग्स ---
+const POSTS_PER_PAGE = 5; 
+let currentPostCount = POSTS_PER_PAGE; 
+
+
+// फ़िल्टर बटन को गतिशील रूप से बनाएँ
+function renderCategoryButtons() {
+    const categoriesDiv = document.getElementById('category-buttons');
+    const uniqueCategories = [...new Set(images.map(item => item.category))]; 
+    
+    let buttonsHTML = `<button class="cat-btn active" onclick="filterImages('all', this)">Show All</button>`;
+    
+    uniqueCategories.forEach(cat => {
+        const displayCat = cat.charAt(0).toUpperCase() + cat.slice(1);
+        buttonsHTML += `<button class="cat-btn" onclick="filterImages('${cat}', this)">${displayCat}</button>`;
+    });
+
+    categoriesDiv.innerHTML = buttonsHTML;
+}
+
+// 🧠 मुख्य लोड फ़ंक्शन
+function loadImages(filterCat = "all", loadMore = false) {
+    const gallery = document.getElementById("gallery");
+    const filteredImages = images.filter(img => filterCat === "all" || img.category === filterCat);
+    
+    if (!loadMore) {
+        gallery.innerHTML = ""; 
+        currentPostCount = POSTS_PER_PAGE; 
+    }
+    
+    const imagesToShow = filteredImages.slice(0, currentPostCount);
+
+    if (!loadMore) {
+         gallery.innerHTML = '';
+    }
+    
+    const existingCards = gallery.querySelectorAll('.card').length;
+    
+    imagesToShow.slice(existingCards).forEach(img => {
+        gallery.insertAdjacentHTML('beforeend', ` 
+            <div class="card">
+                <img src="${img.url}" alt="${img.title}" loading="lazy">
+                <h3>${img.title}</h3>
+                <p>${img.description}</p>
+                <a class="btn" download href="${img.url}">Download</a>
+                <button class="btn" onclick="shareContent('${img.url}', '${img.title}')">Share</button>
+            </div>
+        `);
+    });
+
+    showMoreButton(filteredImages.length, imagesToShow.length);
+}
+
+// ➕ 'Show More' बटन का लॉजिक
+function showMoreButton(totalImages, currentCount) {
+    let container = document.getElementById("show-more-container");
+
+    if (currentCount < totalImages) {
+        const remaining = totalImages - currentCount;
+        container.innerHTML = `<button class="btn" onclick="toggleShowMore()">Load More (${remaining} remaining)</button>`;
+        container.style.display = 'block';
+    } else {
+        container.style.display = 'none';
+        container.innerHTML = '';
+    }
+}
+
+// 🔄 'Show More' पर क्लिक करने पर क्या होगा
+function toggleShowMore() {
+    currentPostCount += POSTS_PER_PAGE; 
+    
+    const activeBtn = document.querySelector('.cat-btn.active');
+    const currentCategory = activeBtn ? activeBtn.getAttribute('onclick').match(/'([^']*)'/)[1] : 'all';
+
+    loadImages(currentCategory, true);
+}
+
+
+// 📲 शेयर फ़ंक्शन: अब वेबसाइट URL को ऑटो-फ़ेच करेगा
+function shareContent(imageUrl, title) {
+    // 💡 AUTO-FETCHING THE CURRENT WEBSITE URL
+    const currentURL = window.location.origin + window.location.pathname; 
+
+    // शेयर करने के लिए सरल और साफ मैसेज
+    const shareMessage = `Check out this beautiful quote: ${title} on Faith Deep Heart.`;
+    
+    // Fallback: WhatsApp या अन्य टेक्स्ट-बेस्ड शेयरिंग के लिए
+    const fallbackText = `${shareMessage} Visit: ${currentURL}`;
+
+    if (navigator.share) {
+         // Native Share Dialogue (ऑटो-फ़ेच किए गए URL का उपयोग करें)
+         navigator.share({
+            title: "Faith Deep Heart - Dua & Quotes",
+            text: shareMessage,
+            url: currentURL // <--- यह अब ऑटोमैटिकली आपकी वेबसाइट का URL है
+        }).catch(error => console.log('Error sharing URL:', error));
+    } else {
+        // WhatsApp/Non-Native Fallback
+        window.open("https://wa.me/?text=" + encodeURIComponent(fallbackText), '_blank');
+    }
+}
+
+
+// फ़िल्टर और एक्टिव बटन अपडेट
+function filterImages(category, element) {
+    loadImages(category);
+
+    document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('active'));
+    element.classList.add('active');
+}
+
+// ⭐ INITIAL CALLS 
+renderCategoryButtons(); 
+loadImages();           
+</script>
+   
 </body>
 </html>
