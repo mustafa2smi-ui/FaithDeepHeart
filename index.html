@@ -2,9 +2,14 @@
 <html lang="en">
 
 <head>
+    <link rel="manifest" href="manifest.json">
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Faith Deep Heart - Best Quotes & Dua Collection</title>
+    
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="icon" type="image/x-icon" href="/favicon.ico"> 
 
     <meta name="description" content="Faith Deep Heart – Best Islamic Quotes, Quranic Dua, Evening Dua, Motivational Thoughts with Download & Share option.">
     <meta property="og:title" content="Faith Deep Heart - Best Quotes & Dua Collection">
@@ -113,6 +118,8 @@
 
 <div class="gallery" id="gallery"></div>
 
+<div id="show-more-container" style="text-align: center; margin-top: 20px;">
+</div>
 <script>
 // ⭐ डेटा स्ट्रक्चर (Data Structure) सुधार: URL, Title, Description और Category अब एक साथ हैं।
 const images = [
@@ -161,7 +168,7 @@ function renderCategoryButtons() {
 }
 renderCategoryButtons();
 
-
+/*
 // 🧠 AUTO CARD CREATE
 function loadImages(filterCat = "all") {
     const gallery = document.getElementById("gallery");
@@ -180,8 +187,69 @@ function loadImages(filterCat = "all") {
         </div>`;
     });
 }
-loadImages(); // first time load
+    */
+    // 🧠 मुख्य लोड फ़ंक्शन अपडेट किया गया
+function loadImages(filterCat = "all", loadMore = false) {
+    const gallery = document.getElementById("gallery");
+    const filteredImages = images.filter(img => filterCat === "all" || img.category === filterCat);
+    
+    if (!loadMore) {
+        gallery.innerHTML = ""; // अगर नया फ़िल्टर है, तो सब हटाओ
+        currentPostCount = POSTS_PER_PAGE; // काउंटर रीसेट
+    }
+    
+    // केवल उतनी ही इमेजेज लें जितनी दिखानी हैं
+    const imagesToShow = filteredImages.slice(0, currentPostCount);
 
+    imagesToShow.forEach(img => {
+        // हम append कर रहे हैं, न कि innerHTML को overwrite
+        // यह append तरीका पुराने पोस्ट को हटाता नहीं है
+        gallery.insertAdjacentHTML('beforeend', ` 
+            <div class="card">
+                <img src="${img.url}" alt="${img.title}" loading="lazy">
+                <h3>${img.title}</h3>
+                <p>${img.description}</p>
+                <a class="btn" download href="${img.url}">Download</a>
+                <button class="btn" onclick="shareImage('${img.url}', '${img.title}')">Share</button>
+            </div>
+        `);
+    });
+
+    // लोड होने के बाद 'Show More' बटन दिखाएँ/छुपाएँ
+    showMoreButton(filteredImages.length, currentPostCount);
+}
+
+// ➕ 'Show More' बटन का लॉजिक
+function showMoreButton(totalImages, currentCount) {
+    let container = document.getElementById("show-more-container");
+    if (!container) return; // सुनिश्चित करें कि कंटेनर HTML में मौजूद है
+
+    if (currentCount < totalImages) {
+        // अगर अभी और चित्र बाकी हैं
+        container.innerHTML = `<button class="btn" onclick="toggleShowMore()">Load More (${totalImages - currentCount} remaining)</button>`;
+        container.style.display = 'block';
+    } else {
+        // सारे चित्र दिख चुके हैं
+        container.style.display = 'none';
+        container.innerHTML = '';
+    }
+}
+
+// 🔄 'Show More' पर क्लिक करने पर क्या होगा
+function toggleShowMore() {
+    currentPostCount += POSTS_PER_PAGE; // 5 पोस्ट और जोड़ें
+    
+    // वर्तमान सक्रिय कैटेगरी का पता लगाएँ
+    const activeBtn = document.querySelector('.cat-btn.active');
+    const currentCategory = activeBtn ? activeBtn.getAttribute('onclick').split("'")[1] : 'all';
+
+    // लोडImages को कॉल करें (loadMore = true)
+    loadImages(currentCategory, true);
+}
+
+
+/*loadImages(); // first time load*/
+/*
 // 📲 SHARE FUNCTION (सुधार: शेयर टेक्स्ट में Title भी शामिल)
 function shareImage(url, title) {
     const shareText = `${title} – Beautiful Islamic Quotes & Dua. Download & Share from Faith Deep Heart: ${url}`;
@@ -195,6 +263,49 @@ function shareImage(url, title) {
     } else {
         // बैकअप के रूप में WhatsApp शेयरिंग
         window.open("https://wa.me/?text=" + encodeURIComponent(shareText), '_blank');
+    }
+}
+*/
+    // 📲 SHARE FUNCTION (सुधार: फ़ाइल शेयरिंग लॉजिक जोड़ा गया)
+async function shareImage(url, title) {
+    const fallbackShareText = `${title} – Beautiful Islamic Quotes & Dua. Download & Share from Faith Deep Heart: ${url}`;
+    
+    // 1. देखें कि क्या Files को शेयर किया जा सकता है (Web Share API Level 2)
+    if (navigator.canShare && navigator.canShare({ files: [] })) {
+        try {
+            // A. इमेज को Fetch करें (GitHub Raw URL से)
+            const response = await fetch(url);
+            const blob = await response.blob();
+            
+            // B. File ऑब्जेक्ट बनाएँ
+            const imageFile = new File([blob], title + '.jpg', { type: blob.type });
+
+            // C. फ़ाइल और टेक्स्ट दोनों को साझा करें
+            await navigator.share({
+                files: [imageFile],
+                title: "Faith Deep Heart - Dua & Quotes",
+                text: title
+            });
+            return; // शेयर सफल होने पर फ़ंक्शन से बाहर निकलें
+        
+        } catch (error) {
+            // अगर फ़ाइल शेयरिंग में कोई दिक्कत आती है (जैसे CORS, या Fetch failed),
+            // तो हम नीचे वाले साधारण टेक्स्ट शेयर पर वापस आ जाएँगे।
+            console.warn("File sharing failed, falling back to URL sharing:", error);
+        }
+    } 
+
+    // 2. Fallback: अगर फ़ाइल शेयरिंग समर्थित नहीं है या फेल हो गई
+    if (navigator.share) {
+         // साधारण Native URL शेयर
+         navigator.share({
+            title: "Faith Deep Heart - Dua & Quotes",
+            text: fallbackShareText,
+            url: url
+        }).catch(error => console.log('Error sharing URL:', error));
+    } else {
+        // WhatsApp/Non-Native Fallback (URL)
+        window.open("https://wa.me/?text=" + encodeURIComponent(fallbackShareText), '_blank');
     }
 }
 
